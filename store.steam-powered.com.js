@@ -1,4 +1,5 @@
 //npm install puppeteer fs @antiadmin/anticaptchaofficial
+// run with command: "node store.steam-powered.com.js"
 
 //IMPORTANT:
 //1. Steam utilizes Recaptcha Enterprise V2, which is not the same as usual Recaptcha V2.

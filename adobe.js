@@ -1,4 +1,6 @@
 //npm install puppeteer fs @antiadmin/anticaptchaofficial
+// update your login credentials
+// run with command: "node adobe.js"
 
 //IMPORTANT:
 //1. Adobe utilizes Recaptcha Enterprise V3 tokens for sign-in procedure.

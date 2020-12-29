@@ -1,4 +1,6 @@
 //npm install puppeteer fs @antiadmin/anticaptchaofficial
+// update your login credentials
+// run with command: "node netflix.js"
 
 //IMPORTANT:
 //1. Netflix utilizes Enterprise Recaptcha V3
