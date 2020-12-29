@@ -19,11 +19,11 @@ const anticaptchaAPIKey = 'API_KEY_HERE';
 
 //access data
 const url = 'https://www.netflix.com/login';
-const login = 'cartrelly@gmail.com';
-const password = 'MD034dkfldklfdm!ds';
+const login = 'your@email.com';
+const password = 'password';
 
 let browser = null;
-let tab = null;
+let page = null;
 let token = null;
 
 
