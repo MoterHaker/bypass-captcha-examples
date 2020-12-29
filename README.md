@@ -12,6 +12,8 @@ __List of solutions:__
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/store.steam-powered.com.js) store.steam-powered.com/join Recaptcha Enterprise V2.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/netflix.js) netflix.com Enterprise Recaptcha V3 at [sign-in](https://www.netflix.com/login) page.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/adobe.js) adobe.com Enterprise Recaptcha V3 at [sign-in](https://auth.services.adobe.com/en_US/index.html) page.
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/roblox.js) roblox.com Arcoselabs Funcaptcha at [sign-in](https://www.roblox.com/newlogin) page.
+
 
 __Requests__
 
