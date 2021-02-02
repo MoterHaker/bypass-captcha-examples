@@ -30,6 +30,10 @@ let browser = null;
 let page = null;
 let token = null;
 
+
+const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36";
+
+
 (async () => {
     
     anticaptcha.setAPIKey(anticaptchaAPIKey);
@@ -49,7 +53,11 @@ let token = null;
         let options = {
             headless: false,
             ignoreHTTPSErrors: true,
-            devtools: true
+            devtools: true,
+            args: [
+                '--disable-web-security',
+                '--disable-features=IsolateOrigins,site-per-process'
+            ]
         };
         console.log(options);
         browser = await pup.launch(options);
@@ -61,6 +69,13 @@ let token = null;
         failCallback("could not open browser: "+e);
         return false;
     }
+
+    await page.setUserAgent(userAgent);
+    await page.evaluateOnNewDocument(() => {
+        Object.defineProperty(navigator, 'platform', { get:() => 'Macintosh' });
+        Object.defineProperty(navigator, 'productSub', { get:() => '20030107' });
+        Object.defineProperty(navigator, 'vendor', { get:() => 'Google Inc.' });
+    });
 
     page.on('console', msg => console.log('EVAL LOG:', msg.text()));
 
@@ -159,7 +174,7 @@ let token = null;
                 s: sValue.s
             });
     } catch (e) {
-        failCallback("could not solve captcha");
+        failCallback("could not solve captcha: "+e);
         return;
     }
 
