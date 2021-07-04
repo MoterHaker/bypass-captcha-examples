@@ -1,6 +1,6 @@
 /*
 
-CloudFlare bypass with Anti-Captcha plugin.
+Datadome bypass with Anti-Captcha plugin.
 Install dependencies:
 
 npm install adm-zip puppeteer-extra puppeteer-extra-plugin-stealth puppeteer
@@ -24,10 +24,10 @@ const pup = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 pup.use(StealthPlugin())
 
-//address with Cloudflare
+//address with datadome protection
 const url = 'https://geo.captcha-delivery.com/captcha/?initialCid=AHrlqAAAAAMAyjC27s4nCV0AlQMdRA%3D%3D&hash=2211F522B61E269B869FA6EAFFB5E1&cid=P2gtFfd.snGFcRsDO5ZpQTId4q1Bh0HJTQ0npTA_6Eq-SDNCUf7i7d-hx2O-8tsMooDrDyQ8Pp-Cyx-kIkY%7EH7PGsoHZwzi9xtc6-BRNO.&t=fe&referer=https%3A%2F%2Fwww.hermes.com%2Ffr%2Ffr%2Fproduct%2Fvanille-galante-eau-de-toilette-and-vanille-galante-fourreau-cuir-V2HERMESSENCEVANILLEGALANTEpV24465pV24464%2F&s=13461';
 
-//control address behind Cloudflare
+//control address behind datadome
 const checkUrl = 'https://www.hermes.com/fr/fr/product/vanille-galante-eau-de-toilette-and-vanille-galante-fourreau-cuir';
 
 //Anti-captcha.com API key
@@ -92,7 +92,7 @@ let page = null;
     //screen size
     await page.setViewport({width: 1360, height: 1000});
 
-    console.log('navigating to cloudflare');
+    console.log('navigating to datadome');
     try {
         await page.goto(url, {
             waitUntil: "networkidle0"
@@ -124,11 +124,11 @@ let page = null;
     console.log('current address is '+currentUrl);
 
     if (currentUrl === url) {
-        failCallback('Could not pass cloudflare :(');
+        failCallback('Could not pass datadome :(');
         return;
     }
     if (currentUrl.indexOf(checkUrl) === 0) {
-        successCallback('Cloudflare passed');
+        successCallback('Datadome passed');
     } else {
         failCallback('Navigated to unexpected address. Check if it is the one!');
     }
