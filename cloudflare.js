@@ -65,8 +65,6 @@ let page = null;
 
         let options = {
             headless: false,
-            ignoreHTTPSErrors: true,
-            devtools: true,
             ignoreDefaultArgs: ["--disable-extensions","--enable-automation"],
             args: [
                 '--disable-web-security',
