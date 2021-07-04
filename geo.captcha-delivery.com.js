@@ -5,8 +5,11 @@ Install dependencies:
 
 npm install adm-zip puppeteer-extra puppeteer-extra-plugin-stealth puppeteer
 
+Run in head-on mode:
+node geo.captcha-delivery.js
+
 Run in headless mode:
-xvfb-run node cloudfare.js
+xvfb-run node geo.captcha-delivery.js
 
 To install xvfb run:
 apt update

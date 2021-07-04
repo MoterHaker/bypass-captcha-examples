@@ -5,6 +5,9 @@ Install dependencies:
 
 npm install adm-zip puppeteer-extra puppeteer-extra-plugin-stealth puppeteer
 
+Run in head-on mode:
+node cloudfare.js
+
 Run in headless mode:
 xvfb-run node cloudfare.js
 
