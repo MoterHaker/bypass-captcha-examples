@@ -6,6 +6,7 @@ __Requirements:__
 - npm packages puppeteer and @antiadmin/anticaptchaofficial
 
 __List of solutions:__
+-  [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare.js) CloudFlare with hCaptcha using Anti-Captcha browser plugin.
 - Bypass geo.captcha-delivery.com protection by Data Dome: 
     -  [geo.captcha.delivery.com.js](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha.delivery.com.js) (bypass Recaptcha V2 and Geetest)
     -  geo.captcha.delivery.com.png (scheme)
