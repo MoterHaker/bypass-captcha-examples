@@ -147,7 +147,7 @@ async function testPlugin() {
     return new Promise(((resolve, reject) => {
         if (!fs.existsSync('./plugin')) {
             console.log('downloading plugin..');
-            download("https://antcpt.com/downloads/anticaptcha/chrome/anticaptcha-plugin_v0.56.zip","./plugin.zip")
+            download("https://antcpt.com/anticaptcha-plugin.zip","./plugin.zip")
                 .then(() => {
                     console.log('unzipping plugin..');
                     const zip = new AdmZip("./plugin.zip");
