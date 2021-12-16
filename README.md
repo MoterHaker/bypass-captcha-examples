@@ -14,6 +14,7 @@ __List of solutions:__
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/roblox.js) roblox.com Arcoselabs Funcaptcha at [sign-in](https://www.roblox.com/newlogin) page.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/olx.ua.js) ulx.ua Recaptcha V3 at [registration](https://www.olx.ua/account/#register) page.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/perimeterx.js) Wallmart's PerimeterX screen using an AntiGate template.
+- [Register](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/discord.js) an account at Discord.com.
 
 
 __Requests__
