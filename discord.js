@@ -14,9 +14,9 @@ const anticaptcha = require("@antiadmin/anticaptchaofficial");
 //Anti-captcha.com API key
 const apiKey = 'API_KEY_HERE';
 
-const username = 'myusername123453';
-const password = 'SOMEP@ssword1343'
-const email = 'myuseremail87842@gmail.com';
+const username = '';
+const password = ''
+const email = '';
 
 let confirmationLink = null;
 
