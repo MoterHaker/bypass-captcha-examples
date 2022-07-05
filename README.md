@@ -15,6 +15,7 @@ __List of solutions:__
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/olx.ua.js) ulx.ua Recaptcha V3 at [registration](https://www.olx.ua/account/#register) page.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/perimeterx.js) Wallmart's PerimeterX screen using an AntiGate template.
 - [Register](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/discord.js) an account at Discord.com using [AntiGate template](https://anti-captcha.com/apidoc/task-types/AntiGateTask) "discord registration".
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/fazenda.gov.br.js) fazenda.gov.br HCaptcha Enterprise.
 
 
 __Requests__
