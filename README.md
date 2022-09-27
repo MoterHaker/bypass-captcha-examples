@@ -7,7 +7,7 @@ __Requirements:__
 
 __List of solutions:__
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare.js) CloudFlare with hCaptcha using Anti-Captcha browser plugin.
-- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha.delivery.com.js) geo.captcha-delivery.com protection by Data Dome using [AntiGate template](https://anti-captcha.com/apidoc/task-types/AntiGateTask) "Anti-bot screen bypass".
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha.delivery.py) geo.captcha-delivery.com protection by Data Dome using [AntiGate template](https://anti-captcha.com/apidoc/task-types/AntiGateTask) "Anti-bot screen bypass".
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/store.steam-powered.com.js) store.steam-powered.com/join Recaptcha Enterprise V2.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/netflix.js) netflix.com Enterprise Recaptcha V3 at [sign-in](https://www.netflix.com/login) page.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/adobe.js) adobe.com Enterprise Recaptcha V3 at [sign-in](https://auth.services.adobe.com/en_US/index.html) page.
@@ -22,3 +22,5 @@ __List of solutions:__
 __Requests__
 
 Post your captcha bypass requests in issues section
+
+captcha-solving captcha-breaking captcha-solver 2captcha deathbycaptcha anti-captcha captcha-bypass anticaptcha captcha-recognition bypasscaptcha bypass-recaptcha-v2 bypass-invisible-recaptcha captcha-services-for-recaptcha-v2 recaptcha-v2-captcha-solver google-recaptcha-solver recaptcha-solver-python recaptcha-bypass-script recaptcha-solver bypass-on-captcha-recaptcha hcaptcha-solver
