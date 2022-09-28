@@ -3,24 +3,34 @@
 Datadome bypass with AntiGate template.
 Install dependencies:
 
-npm install @antiadmin/anticaptchaofficial axios
+npm install @antiadmin/anticaptchaofficial axios https-proxy-agent
 
 
 * */
 
 const axios = require("axios");
-
+const httpsProxyAgent = require('https-proxy-agent');
 const anticaptcha = require("@antiadmin/anticaptchaofficial");
 
 //address behind datadome
-const checkUrl = 'https://www.hermes.com/fr/fr/product/sculpture-casse-tete-samarcande-H311115Mv01/';
+const checkUrl = 'https://www.idealista.pt/en/comprar-empreendimentos/viseu-distrito/pagina-1';
 
 //Anti-captcha.com API key
 const apiKey = 'API_KEY_HERE';
 
+// STOP! IMPORTANT! Shared proxy services won't work!
+// Use ONLY self-installed proxies on your own infrastructure! Instruction: https://anti-captcha.com/apidoc/articles/how-to-install-squid
+// Again and again people people insist they have best purchased proxies. NO YOU DO NOT!
+// Absolutely recommended to read thisFAQ about proxies: https://anti-captcha.com/faq/510_questions_about_solving_recaptcha_with_proxy__applies_to_funcaptcha__geetest__hcaptcha_
+const proxyAddress = '11.22.33.44';
+const proxyPort = 1234;
+const proxyLogin = 'login';
+const proxyPassword = 'pass';
+const domainsOfInterest = ['www.idealista.pt', 'idealista.pt'];
 
-let browser = null;
-let page = null;
+const proxyString = `http://${proxyLogin}:${proxyPassword}@${proxyAddress}:${proxyPort}`;
+
+const agent = new httpsProxyAgent(proxyString);
 
 
 (async () => {
@@ -35,43 +45,75 @@ let page = null;
         // anticaptcha.shutUp(); //uncomment for silent captcha recognition
     }
 
-
+    let antigateResult = null;
     try {
         antigateResult = await anticaptcha.solveAntiGateTask(
             checkUrl,
             'Anti-bot screen bypass',
             {
-                "css_selector": ".captcha__human__container"
-            });
+                "css_selector": "iframe[src*='geo.captcha-delivery.com']"
+            },
+            proxyAddress,
+            proxyPort,
+            proxyLogin,
+            proxyPassword,
+            domainsOfInterest);
     } catch (e) {
         console.error("could not solve captcha: "+e.toString());
         return;
     }
 
-    if (typeof antigateResult.cookies.datadome == "undefined") {
-        console.error('Something went wrong, got no datadome cookies. The page is not behind Datadome?');
+    const fingerPrint = antigateResult.fingerprint;
+    let topLevelDataDomeCookie = null;
+
+    if (antigateResult.domainsOfInterest &&
+        antigateResult.domainsOfInterest['idealista.pt'] &&
+        antigateResult.domainsOfInterest['idealista.pt'].cookies &&
+        antigateResult.domainsOfInterest['idealista.pt'].cookies.datadome) {
+
+        topLevelDataDomeCookie = antigateResult.domainsOfInterest['idealista.pt'].cookies.datadome;
+
+    } else {
+        console.error('Something went wrong, got no datadome cookies. The page is not behind Datadome?')
         return;
     }
 
     console.log("\n\nAnti-bot screen bypassed.\n");
-    console.log("Use these cookies for navigation to the website:\n");
-    console.log(antigateResult.cookies);
+    console.log("Use this datadome cookie for navigation to the website:\n"+topLevelDataDomeCookie+"\n\n");
 
-    const fingerPrint = antigateResult.fingerprint;
+    //adding top level domain cookie to website's cookies
+    antigateResult.cookies['datadome'] = topLevelDataDomeCookie;
+    const targetCookies = joinCookies(antigateResult.cookies);
+    console.log(`joined cookies: ${targetCookies}`);
 
-    axios.get(checkUrl,
-        { headers: {
-            'User-Agent': fingerPrint['self.navigator.userAgent'],
-            'Cookies': 'datadome='+antigateResult.cookies.datadome
-        }  } )
-    .then(response => {
-        console.log(response);
-    })
-    .catch(function(e) {
-      console.log(e);
-    });
+    try {
+        let responseText = await axios.request({
+            url: checkUrl,
+            httpsAgent: agent,
+            headers: {
+                'User-Agent': fingerPrint['self.navigator.userAgent'],
+                'Cookie': targetCookies,
+                'Accept-Encoding': 'deflate',
+                'Accept': 'text/html',
+                'Accept-Language': 'en'
+            }
+        });
+        console.log(responseText.data);
+    } catch (e) {
+        console.error('Could not request page')
+        // console.log(e.toString());
+    }
 
 
 })();
 
 
+
+
+function joinCookies(object) {
+    let resultArray = [];
+    for (const key in object) {
+        resultArray.push(key+"="+object[key])
+    }
+    return resultArray.join("; ");
+}
