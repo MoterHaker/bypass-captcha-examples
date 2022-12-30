@@ -13,7 +13,7 @@ const httpsProxyAgent = require('https-proxy-agent');
 const anticaptcha = require("@antiadmin/anticaptchaofficial");
 
 //address behind datadome
-const checkUrl = 'https://www.idealista.pt/en/comprar-empreendimentos/viseu-distrito/pagina-1';
+const checkUrl = 'https://www.allopneus.com/liste/pneu-auto?saison%5B%5D=4seasons&saison%5B%5D=ete&saison%5B%5D=hiver&page=1';
 
 //Anti-captcha.com API key
 const apiKey = 'API_KEY_HERE';
@@ -21,12 +21,12 @@ const apiKey = 'API_KEY_HERE';
 // STOP! IMPORTANT! Shared proxy services won't work!
 // Use ONLY self-installed proxies on your own infrastructure! Instruction: https://anti-captcha.com/apidoc/articles/how-to-install-squid
 // Again and again people people insist they have best purchased proxies. NO YOU DO NOT!
-// Absolutely recommended to read thisFAQ about proxies: https://anti-captcha.com/faq/510_questions_about_solving_recaptcha_with_proxy__applies_to_funcaptcha__geetest__hcaptcha_
+// Absolutely recommended to read this FAQ about proxies: https://anti-captcha.com/faq/510_questions_about_solving_recaptcha_with_proxy__applies_to_funcaptcha__geetest__hcaptcha_
 const proxyAddress = '11.22.33.44';
 const proxyPort = 1234;
 const proxyLogin = 'login';
 const proxyPassword = 'pass';
-const domainsOfInterest = ['www.idealista.pt', 'idealista.pt'];
+const domainsOfInterest = ['www.allopneus.com', 'allopneus.com'];
 
 const proxyString = `http://${proxyLogin}:${proxyPassword}@${proxyAddress}:${proxyPort}`;
 
@@ -51,7 +51,7 @@ const agent = new httpsProxyAgent(proxyString);
             checkUrl,
             'Anti-bot screen bypass',
             {
-                "css_selector": "iframe[src*='geo.captcha-delivery.com']"
+                "css_selector": ".captcha__human__container"
             },
             proxyAddress,
             proxyPort,
@@ -66,12 +66,14 @@ const agent = new httpsProxyAgent(proxyString);
     const fingerPrint = antigateResult.fingerprint;
     let topLevelDataDomeCookie = null;
 
-    if (antigateResult.domainsOfInterest &&
-        antigateResult.domainsOfInterest['idealista.pt'] &&
-        antigateResult.domainsOfInterest['idealista.pt'].cookies &&
-        antigateResult.domainsOfInterest['idealista.pt'].cookies.datadome) {
+    console.log(antigateResult);
 
-        topLevelDataDomeCookie = antigateResult.domainsOfInterest['idealista.pt'].cookies.datadome;
+    if (antigateResult.domainsOfInterest &&
+        antigateResult.domainsOfInterest['allopneus.com'] &&
+        antigateResult.domainsOfInterest['allopneus.com'].cookies &&
+        antigateResult.domainsOfInterest['allopneus.com'].cookies['datadome']) {
+
+        topLevelDataDomeCookie = antigateResult.domainsOfInterest['allopneus.com'].cookies['datadome'];
 
     } else {
         console.error('Something went wrong, got no datadome cookies. The page is not behind Datadome?')
@@ -101,7 +103,7 @@ const agent = new httpsProxyAgent(proxyString);
         console.log(responseText.data);
     } catch (e) {
         console.error('Could not request page')
-        // console.log(e.toString());
+        console.log(e.toString());
     }
 
 
