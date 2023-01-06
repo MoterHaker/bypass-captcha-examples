@@ -1,9 +1,9 @@
 # Captcha Bypass Examples
-This repository demonstrates weakness of filtering human users with CAPTCHAs. Created for educational use only.
+This repository demonstrates weakness of filtering human users with CAPTCHAs. Created for educational use only. Any illegal or criminal use of these examples is strongly forbidden.
 
 __Requirements:__
 - NodeJS
-- npm packages puppeteer and @antiadmin/anticaptchaofficial
+- npm packages _puppeteer_ and _@antiadmin/anticaptchaofficial_
 
 __List of solutions:__
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare.js) CloudFlare with hCaptcha using Anti-Captcha browser plugin.
@@ -23,4 +23,4 @@ __Requests__
 
 Post your captcha bypass requests in issues section
 
-captcha-solving captcha-breaking captcha-solver 2captcha deathbycaptcha anti-captcha captcha-bypass anticaptcha captcha-recognition bypasscaptcha bypass-recaptcha-v2 bypass-invisible-recaptcha captcha-services-for-recaptcha-v2 recaptcha-v2-captcha-solver google-recaptcha-solver recaptcha-solver-python recaptcha-bypass-script recaptcha-solver bypass-on-captcha-recaptcha hcaptcha-solver
+captcha-solving captcha-breaking captcha-solver 2captcha deathbycaptcha anti-captcha captcha-bypass anticaptcha captcha-recognition bypasscaptcha bypass-recaptcha-v2 bypass-invisible-recaptcha captcha-services-for-recaptcha-v2 recaptcha-v2-captcha-solver google-recaptcha-solver recaptcha-solver-python recaptcha-bypass-script recaptcha-solver bypass-on-captcha-recaptcha hcaptcha-solver datadome cloudflare bypass-datadome bypass-cloudflare
