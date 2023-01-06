@@ -1,6 +1,6 @@
 # IMPORTANT
-# 1. Make sure to have "anticaptchaofficial" package version minimum 1.0.44
-# pip install 'anticaptchaofficial>=1.0.44'
+# 1. Make sure to have "anticaptchaofficial" package version minimum 1.0.46
+# pip install 'anticaptchaofficial>=1.0.46'
 #
 # 2. Proxy usage is required. Each datadome cookie is associated with a proxy and user-agent.
 # Use only self-installed proxy. Shared/purchased proxies WILL FAIL.
@@ -24,42 +24,44 @@ proxies = {
     'http': f"http://{proxy_login}:{proxy_pass}@{proxy_host}:{proxy_port}"
 }
 
-solver = antigateTask()
+solver = antibotcookieTask()
 solver.set_verbose(1)
 solver.set_key("API_KEY_HERE")
-solver.set_website_url("https://www.idealista.pt/en/comprar-empreendimentos/viseu-distrito/pagina-1")
-solver.set_template_name("Anti-bot screen bypass")
+solver.set_website_url("https://www.allopneus.com/liste/pneu-auto?saison%5B%5D=4seasons&saison%5B%5D=ete&saison%5B%5D=hiver&page=1")
+solver.set_provider_name("datadome")
 solver.set_proxy_address(proxy_host)
 solver.set_proxy_port(proxy_port)
 solver.set_proxy_login(proxy_login)
 solver.set_proxy_password(proxy_pass)
-solver.set_variables({
-    "css_selector": "iframe[src*='geo.captcha-delivery.com']"
-})
-solver.set_domains_of_interest(['www.idealista.pt', 'idealista.pt'])
 
 
 result = solver.solve_and_return_solution()
-if result != 0:
+if result == 0:
+    print("could not solve task")
+    exit()
 
-    fingerprint, domainsOfInterest = result["fingerprint"], result['domainsOfInterest']
+print(result)
 
-    if 'idealista.pt' not in domainsOfInterest:
-        print("could not find domain data in 'domainsOfInterest'")
-        exit(1)
+cookies, localStorage, fingerprint = result["cookies"], result["localStorage"], result["fingerprint"]
 
-    print("data dome cookie: ", domainsOfInterest['idealista.pt']['cookies']['datadome'])
+if len(cookies) == 0:
+    print("empty cookies, try again")
+    exit()
 
-    r = requests.get('https://www.idealista.pt/en/comprar-empreendimentos/viseu-distrito/pagina-1', proxies=proxies, headers={
-         'User-Agent': fingerprint['self.navigator.userAgent'],
-         'Cookie': 'datadome=' + domainsOfInterest['idealista.pt']['cookies']['datadome'],
-         'Accept-Encoding': 'deflate',
-         'Accept': 'text/html',
-         'accept-language': 'en'
-    })
-    print(r.text)
+cookie_string = '; '.join([f'{key}={value}' for key, value in cookies.items()])
+user_agent = fingerprint['self.navigator.userAgent']
+print(f"use these cookies for requests: {cookie_string}")
+print(f"use this user-agent for requests: {user_agent}")
 
+s = requests.Session()
+proxies = {
+  "http": f"http://{proxy_login}:{proxy_pass}@{proxy_host}:{proxy_port}",
+  "https": f"http://{proxy_login}:{proxy_pass}@{proxy_host}:{proxy_port}"
+}
+s.proxies = proxies
 
-else:
-    print("task finished with error "+solver.error_code)
-
+content = s.get("https://www.allopneus.com/liste/pneu-auto?saison%5B%5D=4seasons&saison%5B%5D=ete&saison%5B%5D=hiver&page=1", headers={
+    "Cookie": cookie_string,
+    "User-Agent": user_agent
+}).text
+print(content)

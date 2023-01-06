@@ -26,11 +26,11 @@ const proxyAddress = '11.22.33.44';
 const proxyPort = 1234;
 const proxyLogin = 'login';
 const proxyPassword = 'pass';
-const domainsOfInterest = ['www.allopneus.com', 'allopneus.com'];
 
 const proxyString = `http://${proxyLogin}:${proxyPassword}@${proxyAddress}:${proxyPort}`;
 
 const agent = new httpsProxyAgent(proxyString);
+
 
 
 (async () => {
@@ -47,46 +47,22 @@ const agent = new httpsProxyAgent(proxyString);
 
     let antigateResult = null;
     try {
-        antigateResult = await anticaptcha.solveAntiGateTask(
+        antigateResult = await anticaptcha.solveAntiBotCookieTask(
             checkUrl,
-            'Anti-bot screen bypass',
-            {
-                "css_selector": ".captcha__human__container"
-            },
+            'datadome',
             proxyAddress,
             proxyPort,
             proxyLogin,
-            proxyPassword,
-            domainsOfInterest);
+            proxyPassword);
     } catch (e) {
         console.error("could not solve captcha: "+e.toString());
         return;
     }
 
     const fingerPrint = antigateResult.fingerprint;
-    let topLevelDataDomeCookie = null;
-
-    console.log(antigateResult);
-
-    if (antigateResult.domainsOfInterest &&
-        antigateResult.domainsOfInterest['allopneus.com'] &&
-        antigateResult.domainsOfInterest['allopneus.com'].cookies &&
-        antigateResult.domainsOfInterest['allopneus.com'].cookies['datadome']) {
-
-        topLevelDataDomeCookie = antigateResult.domainsOfInterest['allopneus.com'].cookies['datadome'];
-
-    } else {
-        console.error('Something went wrong, got no datadome cookies. The page is not behind Datadome?')
-        return;
-    }
-
-    console.log("\n\nAnti-bot screen bypassed.\n");
-    console.log("Use this datadome cookie for navigation to the website:\n"+topLevelDataDomeCookie+"\n\n");
-
-    //adding top level domain cookie to website's cookies
-    antigateResult.cookies['datadome'] = topLevelDataDomeCookie;
     const targetCookies = joinCookies(antigateResult.cookies);
     console.log(`joined cookies: ${targetCookies}`);
+    console.log(`user-agent: ${fingerPrint['self.navigator.userAgent']}`);
 
     try {
         let responseText = await axios.request({
@@ -106,10 +82,7 @@ const agent = new httpsProxyAgent(proxyString);
         console.log(e.toString());
     }
 
-
 })();
-
-
 
 
 function joinCookies(object) {
