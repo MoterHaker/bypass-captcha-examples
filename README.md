@@ -6,8 +6,9 @@ __Requirements:__
 - npm packages _puppeteer_ and _@antiadmin/anticaptchaofficial_
 
 __List of solutions:__
-- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare.js) CloudFlare bypass example.
-- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha-delivery.com.js) DataDome protection bypass, [Python version](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha-delivery.py)
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare.js) CloudFlare with easy filters.
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare_advanced.js) CloudFlare with strong filters (SSL handshake fingerprint).
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha-delivery.com.js) DataDome protection, [Python version](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha-delivery.py)
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/store.steam-powered.com.js) store.steam-powered.com/join Recaptcha Enterprise V2.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/netflix.js) netflix.com Enterprise Recaptcha V3 at [sign-in](https://www.netflix.com/login) page.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/adobe.js) adobe.com Enterprise Recaptcha V3 at [sign-in](https://auth.services.adobe.com/en_US/index.html) page.

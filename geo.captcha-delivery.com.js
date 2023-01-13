@@ -49,7 +49,6 @@ const agent = new httpsProxyAgent(proxyString);
     try {
         antigateResult = await anticaptcha.solveAntiBotCookieTask(
             checkUrl,
-            'datadome',
             proxyAddress,
             proxyPort,
             proxyLogin,

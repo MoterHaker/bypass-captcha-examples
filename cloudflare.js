@@ -1,6 +1,6 @@
 /*
 
-CloudFlare bypass with Anti-Captcha.com.
+Cloudflare bypass with AntiBotCookieTask from Anti-Captcha.com.
 Install dependencies:
 
 npm install @antiadmin/anticaptchaofficial axios https-proxy-agent
@@ -11,7 +11,7 @@ const axios = require("axios");
 const httpsProxyAgent = require('https-proxy-agent');
 const anticaptcha = require("@antiadmin/anticaptchaofficial");
 
-//address behind datadome
+//address behind cloudflare
 const checkUrl = 'https://www.foodproductdata.com/nesquik-chocolate-powder-20.1oz-028000428433';
 
 
@@ -49,7 +49,6 @@ const agent = new httpsProxyAgent(proxyString);
     try {
         antigateResult = await anticaptcha.solveAntiBotCookieTask(
             checkUrl,
-            'cloudflare',
             proxyAddress,
             proxyPort,
             proxyLogin,
