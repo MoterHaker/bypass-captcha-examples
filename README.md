@@ -6,6 +6,7 @@ __Requirements:__
 - npm packages _puppeteer_ and _@antiadmin/anticaptchaofficial_
 
 __List of solutions:__
+- [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/amazon.js) Amazon FunCaptcha like [this](https://www.amazon.com/aaut/verify/flex-offers/challenge?challengeType=ARKOSE_LEVEL_1&returnTo=https://www.amazon.com&headerFooter=false) one.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare.js) CloudFlare with easy filters.
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/cloudflare_advanced.js) CloudFlare with strong filters (SSL handshake fingerprint).
 - [Bypass](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha-delivery.com.js) DataDome protection, [Python version](https://github.com/MoterHaker/bypass-captcha-examples/blob/main/geo.captcha-delivery.py)
